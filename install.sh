@@ -49,7 +49,7 @@ EOF
 fi
 
 echo "✓ codex CLI detected ($codex_bin)"
-if "$codex_bin" login status 2>/dev/null | grep -qi "logged in"; then
+if "$codex_bin" login status 2>&1 | grep -qi "logged in"; then   # note: codex prints the status line to stderr
   echo "✓ codex is logged in — codex-image is ready."
 else
   echo "⚠  codex is installed but not logged in. Run: codex login"
