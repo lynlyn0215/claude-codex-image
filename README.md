@@ -1,5 +1,12 @@
 # claude-codex-image
 
+![claude-codex-image](assets/banner.jpg)
+
+![License: MIT](https://img.shields.io/badge/license-MIT-black)
+![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-black)
+![Powered by Codex CLI](https://img.shields.io/badge/powered%20by-Codex%20CLI-black)
+![No API key](https://img.shields.io/badge/API%20key-not%20required-2ea44f)
+
 **Give Claude Code real image generation — using your Codex / ChatGPT subscription, no API key — plus the design taste to know *what* to generate.**
 
 Claude Code can't make pictures on its own. This kit bundles two halves that fit together:
@@ -20,12 +27,14 @@ Claude Code can't make pictures on its own. This kit bundles two halves that fit
 
 | Skill | Role |
 |-------|------|
-| `codex-image` | **Engine.** Generate / edit images via the Codex subscription. No API key. (this repo) |
-| `taste-skill` (`design-taste-frontend`) | Anti‑slop frontend taste for landing pages, portfolios, redesigns. *(vendored, MIT)* |
-| `imagegen-frontend-web` | Per‑section website design‑reference image direction. *(vendored, MIT)* |
-| `imagegen-frontend-mobile` | App‑native mobile screen / flow image direction. *(vendored, MIT)* |
+| `codex-image` | **Engine.** Generate / edit images via your Codex subscription. No API key. *(this repo's own)* |
+| `taste-skill` (`design-taste-frontend`) | Anti‑slop frontend taste — landing pages, portfolios, redesigns. |
+| `imagegen-frontend-web` · `imagegen-frontend-mobile` | Per‑section website / mobile design‑reference image direction (pairs with the engine). |
+| `gpt-tasteskill` (`gpt-taste`) | Awwwards‑level GSAP motion + layout engineering. |
+| `brutalist-skill` · `minimalist-skill` · `soft-skill` | Specific aesthetic directions. |
+| `redesign-skill` · `stitch-skill` · `brandkit` · `image-to-code-skill` · `output-skill` · `taste-skill-v1` | Redesign audits, design specs, brand kits, image→code, and more. |
 
-> The full taste‑skill collection (brutalist, minimalist, soft, stitch, redesign, brandkit, gpt‑taste, …) lives upstream at [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill). Drop any of those into `skills/` and re‑run `install.sh` to add them too.
+> All design‑taste skills are vendored unmodified from [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) — see `THIRD_PARTY_LICENSES.md`. The `codex-image` engine is this repo's own work.
 
 ## Prerequisites
 
