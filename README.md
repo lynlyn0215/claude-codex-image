@@ -7,46 +7,48 @@
 ![Powered by Codex CLI](https://img.shields.io/badge/powered%20by-Codex%20CLI-black)
 ![No API key](https://img.shields.io/badge/API%20key-not%20required-2ea44f)
 
-**Give Claude Code real image generation — using your Codex / ChatGPT subscription, no API key — plus the design taste to know *what* to generate.**
+> [English](README.en.md) · **中文**
 
-Claude Code can't make pictures on its own. This kit bundles two halves that fit together:
+**给 Claude Code 装上真正的生图能力 —— 走你的 Codex / ChatGPT 订阅、不用 API key —— 再配上「该生成什么」的设计品味。**
 
-1. **`codex-image`** — the *engine*. A thin wrapper that drives the local [`codex` CLI](https://github.com/openai/codex)'s built‑in `$imagegen` tool, so images are generated through your **ChatGPT/Codex subscription** — **no OpenAI API key, no per‑image billing.** Supports text‑to‑image and image‑to‑image (edit/restyle).
-2. **Design‑taste skills** — the *art direction*. Vendored from [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT): anti‑slop frontend taste + per‑section image direction for web and mobile. They decide *what* images a good design needs; `codex-image` actually produces them.
+Claude Code 自己不会画图。这个套件把两半拼到一起：
+
+1. **`codex-image`** —— *引擎*。一个很薄的封装，驱动本地 [`codex` CLI](https://github.com/openai/codex) 内置的 `$imagegen` 工具，让图片**通过你的 ChatGPT/Codex 订阅**生成 —— **不用 OpenAI API key，也没有按张计费。** 支持文生图与图生图（编辑 / 改风格）。
+2. **设计品味 skills** —— *美术指导*。从 [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)（MIT）vendored 进来：反 AI 味的前端品味 + 网页/移动端逐 section 的出图指导。它们决定**该生成什么**，`codex-image` 负责**把图真正画出来**。
 
 ```
-  taste / imagegen-frontend-*  ──▶  decide WHAT to generate (art direction)
+  taste / imagegen-frontend-*  ──▶  决定「生成什么」(美术指导)
             │
             ▼
-        codex-image            ──▶  codex exec  ──▶  $imagegen (your ChatGPT sub)
+        codex-image            ──▶  codex exec  ──▶  $imagegen (你的 ChatGPT 订阅)
             │                                              │
-   Claude  Read  ◀────────  out.png  ◀──── copied from ~/.codex/generated_images/
+   Claude  Read  ◀────────  out.png  ◀──── 从 ~/.codex/generated_images/ 拷出
 ```
 
-## What's inside
+## 里面有什么
 
-| Skill | Role |
+| Skill | 作用 |
 |-------|------|
-| `codex-image` | **Engine.** Generate / edit images via your Codex subscription. No API key. *(this repo's own)* |
-| `taste-skill` (`design-taste-frontend`) | Anti‑slop frontend taste — landing pages, portfolios, redesigns. |
-| `imagegen-frontend-web` · `imagegen-frontend-mobile` | Per‑section website / mobile design‑reference image direction (pairs with the engine). |
-| `gpt-tasteskill` (`gpt-taste`) | Awwwards‑level GSAP motion + layout engineering. |
-| `brutalist-skill` · `minimalist-skill` · `soft-skill` | Specific aesthetic directions. |
-| `redesign-skill` · `stitch-skill` · `brandkit` · `image-to-code-skill` · `output-skill` · `taste-skill-v1` | Redesign audits, design specs, brand kits, image→code, and more. |
+| `codex-image` | **引擎。** 用你的 Codex 订阅生成 / 编辑图片，不用 API key。*(本仓库自己的)* |
+| `taste-skill`（`design-taste-frontend`） | 反 AI 味的前端品味 —— 落地页、作品集、改版。 |
+| `imagegen-frontend-web` · `imagegen-frontend-mobile` | 网页 / 移动端逐 section 的设计参考出图指导（与引擎搭配）。 |
+| `gpt-tasteskill`（`gpt-taste`） | Awwwards 级的 GSAP 动效 + 排版工程。 |
+| `brutalist-skill` · `minimalist-skill` · `soft-skill` | 具体的美学风格方向。 |
+| `redesign-skill` · `stitch-skill` · `brandkit` · `image-to-code-skill` · `output-skill` · `taste-skill-v1` | 改版审计、设计规格、品牌套件、图转代码等等。 |
 
-> All design‑taste skills are vendored unmodified from [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) — see `THIRD_PARTY_LICENSES.md`. The `codex-image` engine is this repo's own work.
+> 所有设计品味 skill 均原样 vendored 自 [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)（MIT）—— 见 `THIRD_PARTY_LICENSES.md`。`codex-image` 引擎是本仓库自有实现。
 
-## Prerequisites
+## 前置条件
 
 - [Claude Code](https://docs.claude.com/en/docs/claude-code)
-- [`codex` CLI](https://github.com/openai/codex) installed (`brew install codex` on macOS) and logged in:
+- 装好 [`codex` CLI](https://github.com/openai/codex)（macOS：`brew install codex`）并登录：
   ```bash
-  codex login            # log in with your ChatGPT subscription (Plus / Pro / Team)
+  codex login            # 用你的 ChatGPT 订阅登录（Plus / Pro / Team）
   codex login status     # → "Logged in using ChatGPT"
   ```
-- macOS or Linux (the engine wrapper is bash; Windows users can run it under WSL)
+- macOS 或 Linux（引擎是 bash 脚本；Windows 用户在 WSL 里跑）
 
-## Install
+## 安装
 
 ```bash
 git clone https://github.com/lynlyn0215/claude-codex-image.git
@@ -54,47 +56,47 @@ cd claude-codex-image
 ./install.sh
 ```
 
-`install.sh` copies every skill into `~/.claude/skills/`, makes the wrapper executable, and checks that `codex` is installed + logged in. Re‑running is safe. Restart Claude Code (or start a new session) so it picks up the new skills.
+`install.sh` 会把每个 skill 拷进 `~/.claude/skills/`、给脚本加可执行权限，并检查 `codex` 是否已装好 + 登录。可重复运行。装完**重启 Claude Code（或开个新会话）**让它加载到新 skill。
 
-## Usage
+## 用法
 
-Once installed, just ask Claude Code naturally:
+装好后，直接用自然语言问 Claude Code：
 
-- *"Generate an OG/social share image for this landing page."* → `codex-image` produces it.
-- *"Design me a SaaS landing and generate a reference image for each section."* → `imagegen-frontend-web` directs, `codex-image` generates.
-- *"Make 3 mobile onboarding screens."* → `imagegen-frontend-mobile` directs, `codex-image` generates.
+- *「给这个落地页生成一张 OG / 社交分享图。」* → `codex-image` 出图。
+- *「帮我设计一个 SaaS 落地页，并为每个 section 生成一张参考图。」* → `imagegen-frontend-web` 做指导，`codex-image` 出图。
+- *「做 3 张移动端引导页。」* → `imagegen-frontend-mobile` 做指导，`codex-image` 出图。
 
-### Call the engine directly
+### 直接调引擎
 
 ```bash
-~/.claude/skills/codex-image/codex-image.sh "<prompt>" <output-path> [aspect] [reference-image]
+~/.claude/skills/codex-image/codex-image.sh "<prompt>" <输出路径> [aspect] [参考图]
 ```
 
-- **aspect**: `1:1` (default) · `16:9` · `9:16` · `4:3` · `3:4`  — OG/social images use `16:9`.
-- **reference-image** (optional 4th arg): a path = **image‑to‑image / edit** (restyle, change background, expand…).
+- **aspect（比例）**：`1:1`（默认）· `16:9` · `9:16` · `4:3` · `3:4` —— OG / 社交图用 `16:9`。
+- **参考图**（可选的第 4 个参数）：传一个路径 = **图生图 / 编辑**（改风格、换背景、扩图……）。
 
 ```bash
-# text-to-image (OG image)
+# 文生图（OG 图）
 ~/.claude/skills/codex-image/codex-image.sh \
   "a silver chrome mechanical keycap with a glowing starburst, near-black bg, soft rim light, no text" \
   ./og.png 16:9
 
-# image-to-image (restyle an existing picture)
+# 图生图（把已有图片改风格）
 ~/.claude/skills/codex-image/codex-image.sh "restyle into neon cyberpunk night" ./out.png 16:9 ./input.jpg
 ```
 
-The wrapper prints the saved path on stdout, or a clear error (codex missing / not logged in / quota) on stderr.
+成功时脚本只在 stdout 打印保存路径；失败时在 stderr 打印清楚的原因（codex 没装 / 没登录 / 额度用尽）。
 
-## How it works (engine)
+## 原理（引擎）
 
-`codex` ships a built‑in `$imagegen` image tool. The wrapper runs `codex exec --json` with a `$imagegen …` prompt; codex generates the image into `~/.codex/generated_images/<thread-id>/ig_*.png` using your subscription. The wrapper parses the thread id, finds that file, and copies it to your output path — so it doesn't depend on the model "remembering" to save the file. Env overrides: `CODEX_BIN`, `CODEX_HOME`, `CODEX_IMAGEGEN_MODEL` (default `gpt-5.5`).
+`codex` 自带一个 `$imagegen` 图像工具。脚本用 `codex exec --json` 发一条 `$imagegen …` 的 prompt；codex 用你的订阅把图生成到 `~/.codex/generated_images/<thread-id>/ig_*.png`。脚本解析出 thread id、找到那个文件、拷到你的输出路径 —— 所以**不依赖模型「记得」去保存文件**。可用环境变量覆盖：`CODEX_BIN`、`CODEX_HOME`、`CODEX_IMAGEGEN_MODEL`（默认 `gpt-5.5`）。
 
-## Cost & limits
+## 成本与额度
 
-No OpenAI API spend — calls consume your **ChatGPT subscription** message quota, and are rate‑limited by your plan. Don't burn quota on throwaways; generate deliberately.
+不花 OpenAI API 的钱 —— 调用消耗的是你 **ChatGPT 订阅**的消息额度，并受你套餐的速率限制。别拿它刷废图；想清楚再生成。
 
-## Credits & license
+## 致谢与许可
 
-- **codex‑image engine** and packaging: this repo, MIT (see `LICENSE`). The Codex‑subscription image‑gen bridge idea is shared by the community — see also [oakplank/claude-gpt-image-bridge](https://github.com/oakplank/claude-gpt-image-bridge).
-- **Design‑taste skills** (`taste-skill`, `imagegen-frontend-web`, `imagegen-frontend-mobile`): vendored from [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill), MIT — full text in `THIRD_PARTY_LICENSES.md`. All credit to the original author.
-- Image generation runs on OpenAI's [`codex` CLI](https://github.com/openai/codex) and your ChatGPT subscription.
+- **codex‑image 引擎**与打包：本仓库，MIT（见 `LICENSE`）。「用 Codex 订阅生图」这个桥接思路是社区共有的 —— 另见 [oakplank/claude-gpt-image-bridge](https://github.com/oakplank/claude-gpt-image-bridge)。
+- **设计品味 skills**（`taste-skill`、`imagegen-frontend-web`、`imagegen-frontend-mobile` 等）：vendored 自 [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)，MIT —— 完整许可见 `THIRD_PARTY_LICENSES.md`。全部功劳归原作者。
+- 图像生成跑在 OpenAI 的 [`codex` CLI](https://github.com/openai/codex) 和你的 ChatGPT 订阅上。
